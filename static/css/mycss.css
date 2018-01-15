@@ -1,7 +1,23 @@
 /*** My CSS ***/
 
-.left-panel {
-	border-right: 1px solid black;
-    min-height: 100px;
+div .add-margin{
+	position: relative;
+	margin: 0 15px 15px;
+	padding-top: 15px
 }
 
+.carousel-inner img {
+	margin: auto;
+}
+
+.input-number {
+	width:20%;
+	display:inline-block;
+}
+
+/*** Override del borde btn-default
+	Especificado a las imagenes del scroll
+***/
+#pictureScroll .btn-default {
+	border:none;
+}

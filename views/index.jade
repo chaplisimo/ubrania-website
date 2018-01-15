@@ -1,3 +1,24 @@
 extends ./layouts/layout.jade
-block content
-	h2(class="center-align") Ubrania Content
+
+block pageBody
+	//header
+	div(id="header" class="container-fluid")
+		div(class="row panel-body")
+			div(class="col-md-12")
+				h1(class="center-block") Ubrania
+				
+	div(id="content" class="container-fluid")
+		div(class="row")
+			div(id="left-panel" class="col-md-2 panel panel-default add-margin")
+				form(name="menuForm" id="menuForm" method="POST")
+					div(class="list-group")
+						button(type="button" class="list-group-item") REMERAS
+						button(type="button" class="list-group-item") PANTALONES
+						button(type="button" class="list-group-item") MALLAS
+						button(type="button" class="list-group-item") CAMPERAS
+						button(type="button" class="list-group-item") ROMPEVIENTOS
+						button(type="button" class="list-group-item") CONJUNTOS DEPORTIVOS
+			div(id="center-block" class="col-md-9 panel panel-default add-margin")
+				block content
+	script
+		include ../static/js/index.js

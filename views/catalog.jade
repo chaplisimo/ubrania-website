@@ -1,0 +1,84 @@
+extends ./layouts/layout.jade
+
+block pageBody
+	nav(class="navbar navbar-default")
+		div(class="container-fluid")
+			div(class="navbar-header")
+				a(class="navbar-brand" href="#")
+					img(alt="Brand" src="./img/brandimage.png" height="20" width="20")
+					
+	div(class="container-fluid" id="breadcrumb")
+		ul(class="breadcrumb")
+			li
+				a(href="#") Home
+			li
+				a(href="#") Library
+			li(class="active") Data
+			
+	div(class="container-fluid")
+		div(class="row")
+			div(class="col-md-8 col-md-offset-4")
+				h2 Catalog Item #1
+			
+	div(class="container-fluid" id="catalog")
+		div(class="row")
+			div(class="col-md-2 col-md-offset-2")
+				//PICTURES SCROLL
+				div(class="btn-group" id="pictureScroll" data-toggle="buttons")
+					label(class="btn btn-default active" aria-pressed="true")
+						input(type="radio" name="pictures" id="picture1")
+						img(alt="Picture1" src="./img/thumbnail.png" class="img-thumbnail")
+					label(class="btn btn-default")
+						input(type="radio" name="pictures" id="picture2")
+						img(alt="Picture2" src="./img/thumbnail.png" class="img-thumbnail")
+					label(class="btn btn-default")
+						input(type="radio" name="pictures" id="picture3")
+						img(alt="Picture3" src="./img/thumbnail.png" class="img-thumbnail")
+			
+			div(class="col-md-7")
+				//CATALOG
+				form(class="form-horizontal" name="formArticle")
+					div(class="form-group")
+						//MAIN PICTURE
+						div(class="col-md-4")
+							img(alt="Picture3" src="./img/thumbnail.png" class="img-thumbnail")
+						
+						div(class="col-md-4")
+							//SIZES
+							div(class="row")
+								div(class="col-md-12")
+									div(class="btn-group btn-group-sm" role="group" aria-label"Sizes" data-toggle="buttons")
+										label(class="btn btn-default active" aria-pressed="true") S
+											input(type="radio" name="sizes" id="size_small")
+										label(class="btn btn-default") M
+											input(type="radio" name="sizes" id="size_medium")
+										label(class="btn btn-default") L
+											input(type="radio" name="sizes" id="size_large")
+										label(class="btn btn-default") XL
+											input(type="radio" name="sizes" id="size_xlarge")
+										label(class="btn btn-default") XXL
+											input(type="radio" name="sizes" id="size_xxlarge")
+										label(class="btn btn-default disabled") 3XL
+											input(type="radio" name="sizes" id="size_3xl" disabled="disabled" )
+							
+							br
+							
+							//QUANTITY
+							div(class="row")
+								div(class="col-md-12")
+									label(for="quantity" style="display:block") Cantidad
+									span
+										button(type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quantity")
+											span(class="glyphicon glyphicon-minus")
+									&nbsp
+									input(type="text" name="quantity" id="quantity" class="form-control input-number" value="1" min="1")
+									&nbsp
+									span
+										button(type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity")
+											span(class="glyphicon glyphicon-plus")
+							
+							//QUANTITY
+							div(class="row")
+								div(class="col-md-12")
+	script
+		include ../static/js/catalog.js

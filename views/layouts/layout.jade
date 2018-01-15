@@ -6,15 +6,8 @@ html(lang="es")
 		meta(charset="utf-8")
 		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet")
 		link(href="./css/mycss.css" rel="stylesheet")
+		
+		script(src="https://code.jquery.com/jquery-3.2.1.min.js")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
 	body
-		//header
-		div(id="header" class="container-fluid")
-			div(class="row")
-				div(class="col-md-12")
-					h1(class="center-block") Ubrania
-		div(id="content" class="container-fluid")
-			div(class="row")
-				div(id="left-panel" class="col-md-2 left-panel")
-					block left-panel
-				div(id="center-block" class="col-md-8 center-block")
-					block content
+		block pageBody
