@@ -15,9 +15,41 @@ div .add-margin{
 	display:inline-block;
 }
 
+.input-number.readonly {
+	background-color : #fff;
+}
+
+.footer {
+	background-color : #ccc;
+	text-align: center;
+	padding : 20px 30px;
+	bottom: 0;
+}
+
 /*** Override del borde btn-default
 	Especificado a las imagenes del scroll
 ***/
 #pictureScroll .btn-default {
 	border:none;
+}
+
+/*** horizontal line ***/
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+map {
+  position:absolute;
+  top:0; left:0;
+}
+
+area {
+  display: inline-block;
+  border:1px solid #000;
+  position:absolute;
 }

@@ -1,84 +1,155 @@
 extends ./layouts/layout.jade
 
 block pageBody
-	nav(class="navbar navbar-default")
-		div(class="container-fluid")
-			div(class="navbar-header")
-				a(class="navbar-brand" href="#")
+	nav.navbar.navbar-default
+		.container-fluid
+			.navbar-header
+				a.navbar-brand(href="#")
 					img(alt="Brand" src="./img/brandimage.png" height="20" width="20")
 					
-	div(class="container-fluid" id="breadcrumb")
-		ul(class="breadcrumb")
+	.container-fluid(id="breadcrumb")
+		ul.breadcrumb
 			li
 				a(href="#") Home
 			li
 				a(href="#") Library
-			li(class="active") Data
+			li.active Data
 			
-	div(class="container-fluid")
-		div(class="row")
-			div(class="col-md-8 col-md-offset-4")
+	.container-fluid
+		.row
+			.col-md-8.col-md-offset-4
 				h2 Catalog Item #1
 			
-	div(class="container-fluid" id="catalog")
-		div(class="row")
-			div(class="col-md-2 col-md-offset-2")
+	.container-fluid(id="catalog")
+		.row
+			.col-md-2.col-md-offset-2
 				//PICTURES SCROLL
-				div(class="btn-group" id="pictureScroll" data-toggle="buttons")
-					label(class="btn btn-default active" aria-pressed="true")
+				.btn-group.pre-scrollable(id="pictureScroll" data-toggle="buttons")
+					label.btn.btn-default.active(aria-pressed="true")
 						input(type="radio" name="pictures" id="picture1")
-						img(alt="Picture1" src="./img/thumbnail.png" class="img-thumbnail")
-					label(class="btn btn-default")
+						img(alt="Picture1" src="./img/thumbnail.png" class="img-thumbnail" width="100")
+					label.btn.btn-default
 						input(type="radio" name="pictures" id="picture2")
-						img(alt="Picture2" src="./img/thumbnail.png" class="img-thumbnail")
-					label(class="btn btn-default")
+						img(alt="Picture2" src="./img/thumbnail.png" class="img-thumbnail" width="100")
+					label.btn.btn-default
 						input(type="radio" name="pictures" id="picture3")
-						img(alt="Picture3" src="./img/thumbnail.png" class="img-thumbnail")
+						img(alt="Picture3" src="./img/thumbnail.png" class="img-thumbnail" width="100")
+					label.btn.btn-default
+						input(type="radio" name="pictures" id="picture4")
+						img(alt="Picture4" src="./img/thumbnail.png" class="img-thumbnail" width="100")
 			
-			div(class="col-md-7")
+			.col-md-7
 				//CATALOG
-				form(class="form-horizontal" name="formArticle")
-					div(class="form-group")
+				form.form-horizontal(name="formArticle")
+					.form-group
 						//MAIN PICTURE
-						div(class="col-md-4")
+						.col-md-4
 							img(alt="Picture3" src="./img/thumbnail.png" class="img-thumbnail")
 						
-						div(class="col-md-4")
+						.col-md-4
 							//SIZES
-							div(class="row")
-								div(class="col-md-12")
-									div(class="btn-group btn-group-sm" role="group" aria-label"Sizes" data-toggle="buttons")
-										label(class="btn btn-default active" aria-pressed="true") S
-											input(type="radio" name="sizes" id="size_small")
-										label(class="btn btn-default") M
-											input(type="radio" name="sizes" id="size_medium")
-										label(class="btn btn-default") L
-											input(type="radio" name="sizes" id="size_large")
-										label(class="btn btn-default") XL
-											input(type="radio" name="sizes" id="size_xlarge")
-										label(class="btn btn-default") XXL
-											input(type="radio" name="sizes" id="size_xxlarge")
-										label(class="btn btn-default disabled") 3XL
-											input(type="radio" name="sizes" id="size_3xl" disabled="disabled" )
+							.row
+								.col-md-12
+									.btn-group.btn-group-sm(role="group" aria-label"Sizes" data-toggle="buttons")
+										label.btn.btn-default.active(aria-pressed="true") S
+											input(type="radio" name="sizes" value="size_small")
+										label.btn.btn-default M
+											input(type="radio" name="sizes" value="size_medium")
+										label.btn.btn-default L
+											input(type="radio" name="sizes" value="size_large")
+										label.btn.btn-default XL
+											input(type="radio" name="sizes" value="size_xlarge")
+										label.btn.btn-default XXL
+											input(type="radio" name="sizes" value="size_xxlarge")
+										label.btn.btn-default.disabled 3XL
+											input(type="radio" name="sizes" value="size_3xl" disabled="disabled" )
 							
 							br
 							
 							//QUANTITY
-							div(class="row")
-								div(class="col-md-12")
+							.row
+								.col-md-12
 									label(for="quantity" style="display:block") Cantidad
 									span
-										button(type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quantity")
+										button(type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quantity" id="minusQty")
 											span(class="glyphicon glyphicon-minus")
-									&nbsp
-									input(type="text" name="quantity" id="quantity" class="form-control input-number" value="1" min="1")
-									&nbsp
+									| &nbsp
+									input(type="text" name="quantity" id="quantity" class="form-control input-number readonly" value="1" min="1" readonly)
+									| &nbsp
 									span
-										button(type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity")
+										button(type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity" id="plusQty")
 											span(class="glyphicon glyphicon-plus")
 							
-							//QUANTITY
-							div(class="row")
-								div(class="col-md-12")
+							//PRICE
+							.row
+								.col-md-12
+									del
+										h4.small $2999
+									.col-md-6
+										h1 $2000
+									.col-md-6.pull-left
+										h3
+											small.text-success 20% OFF
+							
+							br
+							
+							//BUY BUTTON
+							.row
+								.col-md-12
+									button(type="button" class="btn btn-info center-block") Agregar al carrito
+		
+		.row
+			.col-md-10.col-md-offset-1
+				hr
+				.col-md-10.col-md-offset-1
+					//DESCRIPCION
+					h1 Descripcion
+					p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget consequat ligula. Suspendisse potenti. Pellentesque consequat quam et neque gravida, ac lacinia neque feugiat. Suspendisse at laoreet enim, ac efficitur massa. Nulla lacinia nisi sapien, in pulvinar metus gravida molestie. Nunc non rhoncus justo, nec blandit dolor. Mauris varius fringilla quam, id fringilla neque interdum et. Aenean ornare lobortis mollis. Suspendisse mattis sodales venenatis. Vestibulum tristique nulla et finibus pretium. Quisque at condimentum felis. Proin lacus quam, commodo sed nisl laoreet, vulputate suscipit dui. Aenean a nunc mattis tellus iaculis varius.
+					p Quisque bibendum imperdiet eleifend. Nullam sed congue tellus. Fusce ac nulla sapien. Aliquam dolor ante, viverra sit amet eros et, efficitur imperdiet ante. Sed malesuada purus at nisl cursus pretium. Cras ac elit sit amet sapien sodales pellentesque. Pellentesque interdum mauris nec libero lacinia, id bibendum eros pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+					p Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum sit amet ultrices tellus, sit amet facilisis orci. Maecenas vitae lectus ut augue ornare accumsan non quis velit. Aliquam quis sem in sem ornare volutpat. Donec a metus fringilla nunc aliquam ultricies at ac lacus. Donec fermentum gravida posuere. Nunc a urna a metus dictum pretium. Cras sed lorem vel tellus dictum euismod a quis libero. Phasellus vestibulum tempor purus quis tristique. Nullam blandit magna sem, vel sagittis odio porttitor eu. Nam efficitur sed lorem nec commodo. Praesent purus lorem, pharetra quis dignissim a, congue luctus nibh.
+					p Ut dapibus suscipit mauris, interdum sagittis erat faucibus eu. Integer eu massa vel mauris vehicula aliquam. Fusce consequat ipsum vitae malesuada tempor. Donec ultricies ligula sed dictum aliquet. Sed eget purus est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris nunc massa, laoreet id neque sit amet, vulputate tempus lectus. Suspendisse et varius neque. Quisque dictum vulputate diam quis vulputate. Vestibulum faucibus mi est, quis efficitur elit accumsan ac. Aenean vitae euismod arcu, ut laoreet dolor.
+					p Vestibulum a gravida tellus, placerat pellentesque velit. Ut quam felis, laoreet viverra elementum non, posuere sit amet massa. Suspendisse potenti. Etiam mollis feugiat turpis eget accumsan. Vestibulum cursus, nulla eget laoreet lobortis, leo magna volutpat massa, in luctus turpis est vel tellus. Nullam ligula sapien, commodo eu pellentesque sit amet, blandit quis elit. Cras hendrerit maximus lobortis. Nullam gravida tempor nisl, ut accumsan lectus commodo in. Nullam ut suscipit quam. In sagittis, mi vel vestibulum pretium, magna purus tristique est, eu cursus diam tellus non risus. Nam vel nunc tempor, molestie turpis maximus, egestas magna. Sed in cursus nunc, non pharetra orci. Etiam varius fringilla ante at tristique. Curabitur tincidunt posuere nibh, non finibus magna egestas vel. Praesent quis feugiat metus, non vulputate mauris. Suspendisse at elementum tortor, in imperdiet magna.
+					
+		.row
+			.col-md-10.col-md-offset-1
+				hr
+				.col-md-10.col-md-offset-1
+					//TALLES
+					h1 Detalle de Tallas
+					br
+					.col-md-5
+						.btn-group.btn-group-sm(role="group" aria-label"Sizes" data-toggle="buttons")
+							label.btn.btn-default.active(aria-pressed="true") S
+								input(type="radio" name="sizesDetail" value="size_small")
+							label.btn.btn-default M
+								input(type="radio" name="sizesDetail" value="size_medium")
+							label.btn.btn-default L
+								input(type="radio" name="sizesDetail" value="size_large")
+							label.btn.btn-default XL
+								input(type="radio" name="sizesDetail" value="size_xlarge")
+							label.btn.btn-default XXL
+								input(type="radio" name="sizesDetail" value="size_xxlarge")
+							label.btn.btn-default.disabled 3XL
+								input(type="radio" name="sizesDetail" value="size_3xl" disabled="disabled" )
+						
+						br
+						br
+						
+						.panel.panel-default
+							.panel-heading
+								| Medidas aproximadas
+							ul.list-group
+								li.list-group-item Hombro a hombro:
+									| 15cm
+								li.list-group-item Largo: 22cm
+								li.list-group-item Espalda: 32cm
+					
+					.col-md-7.text-center
+							img(id="sizePreview" alt="sizePreview" src="./img/thumbnail.png" usemap="#clothMap")
+							map(name="clothMap")
+								area(shape="rect" coords="0,0,70,70" data-toggle="tooltip" title="Top-left")
+								area(shape="rect" coords="71,0,140,70" data-toggle="tooltip" title="Top-right")
+								area(shape="rect" coords="0,71,70,140" data-toggle="tooltip" data-placement="bottom" title="Down-left")
+								area(shape="rect" coords="71,71,140,140" data-toggle="tooltip" data-placement="bottom" title="Down-right")
 	script
 		include ../static/js/catalog.js
