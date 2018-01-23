@@ -46,3 +46,19 @@ $("area[data-toggle='tooltip']").each(function(){
 	
 	$(this).css({ 'top': position.top + Number(top) +"px", 'left': position.left + Number(left) +"px", 'width': width, 'height' : heigth});
 });
+
+//Popover cart
+$("[data-toggle='popover']").popover({
+	placement : "bottom",
+	template : '<div class="popover popover-lg" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
+	html : true,
+	trigger : 'focus',
+	content : $("#cart_popover").html()//,
+	//container : 'body'
+})
+
+$("[name='sizesDetail']").on("change",function(){
+	let value = $(this).val();
+	$("[id^=sizesDetailDesc]").css("display","none");
+	$("#sizesDetailDesc_"+value).css("display","");
+});

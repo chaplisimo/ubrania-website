@@ -26,6 +26,23 @@ div .add-margin{
 	bottom: 0;
 }
 
+.fixed-right{
+	position : fixed;
+	right : 1%;
+	padding: 1%;
+	z-index:1;
+}
+
+.icon-lg {
+	font-size : 25pt;
+}
+
+.popover-lg{
+	position : fixed;
+	max-width : none;
+	width : 25%;
+}
+
 /*** Override del borde btn-default
 	Especificado a las imagenes del scroll
 ***/
