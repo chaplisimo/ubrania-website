@@ -43,6 +43,20 @@ div .add-margin{
 	width : 25%;
 }
 
+.cartOK {
+	position : relative;
+	opacity : 0;
+	animation : cartOK 1s ease forwards;
+	transition : transform 1s;
+	transition-delay: 0.1s;
+	transform : rotate(360deg);
+}
+
+@keyframes cartOK {
+	25%{opacity:1;}
+	80%{opacity:0;left:0px;top:0px};
+}
+
 /*** Override del borde btn-default
 	Especificado a las imagenes del scroll
 ***/

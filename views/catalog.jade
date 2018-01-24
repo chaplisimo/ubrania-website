@@ -16,7 +16,6 @@ block pageBody
 			li.active Data
 			
 		.panel.panel-default.fixed-right
-			//.dropdown
 			span.glyphicon.glyphicon-user.icon-lg.dropdown(id="dropdownUser" data-toggle="dropdown")
 			ul.dropdown-menu.dropdown-menu-right(aria-labelledby="dropdownUser")
 					li
@@ -28,7 +27,8 @@ block pageBody
 			
 			| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			
-			span.glyphicon.glyphicon-shopping-cart.icon-lg(data-toggle="popover" tabindex="0")
+			span#myCart.glyphicon.glyphicon-shopping-cart.icon-lg(data-toggle="popover" tabindex="0")
+			span#cartOK.glyphicon.glyphicon-shopping-cart.icon-lg(style="opacity:0;width:0")
 			
 			.row(id="cart_popover" style="display:none")
 				table.table.table-striped
@@ -54,7 +54,7 @@ block pageBody
 	.container-fluid(id="catalog")
 		.row
 			.col-md-2.col-md-offset-2
-				//PICTURES SCROLL
+				//-PICTURES SCROLL
 				.btn-group.pre-scrollable(id="pictureScroll" data-toggle="buttons")
 					each image, index in data.item_displaying.images
 						label.btn.btn-default(class=index == 0?"active":"" aria-pressed=index == 0?"true" : "")
@@ -62,15 +62,15 @@ block pageBody
 							img(alt="Picture"+index src=image id="picture"+index class="img-thumbnail" width="100")
 			
 			.col-md-7
-				//CATALOG
-				form.form-horizontal(name="formArticle")
+				//-CATALOG
+				form.form-horizontal#formArticle(name="formArticle")
 					.form-group
-						//MAIN PICTURE
+						//-MAIN PICTURE
 						.col-md-4
 							img#mainPicture(alt="Picture3" src="./img/thumbnail.png" class="img-thumbnail")
 						
 						.col-md-4
-							//SIZES
+							//-SIZES
 							.row
 								.col-md-12
 									.btn-group.btn-group-sm(role="group" aria-label"Sizes" data-toggle="buttons")
@@ -80,7 +80,7 @@ block pageBody
 							
 							br
 							
-							//QUANTITY
+							//-QUANTITY
 							.row
 								.col-md-12
 									label(for="quantity" style="display:block") Cantidad
@@ -94,7 +94,7 @@ block pageBody
 										button(type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity" id="plusQty")
 											span.glyphicon.glyphicon-plus
 							
-							//PRICE
+							//-PRICE
 							.row
 								.col-md-12
 									if data.item_displaying.hasOwnProperty("discountPrice")
@@ -109,16 +109,16 @@ block pageBody
 							
 							br
 							
-							//BUY BUTTON
+							//-BUY BUTTON
 							.row
 								.col-md-12
-									button(type="button" class="btn btn-info center-block") Agregar al carrito
+									button#addToCart(type="button" class="btn btn-info center-block") Agregar al carrito
 		
 		.row
 			.col-md-10.col-md-offset-1
 				hr
 				.col-md-10.col-md-offset-1
-					//DESCRIPCION
+					//-DESCRIPCION
 					h1 Descripcion
 					p!=data.item_displaying.description
 					
@@ -126,7 +126,7 @@ block pageBody
 			.col-md-10.col-md-offset-1
 				hr
 				.col-md-10.col-md-offset-1
-					//TALLES
+					//-TALLES
 					h1 Detalle de Tallas
 					br
 					.col-md-5
@@ -164,19 +164,29 @@ block pageBody
 								area(shape="rect" coords="0,71,70,140" data-toggle="tooltip" data-placement="bottom" title="Down-left")
 								area(shape="rect" coords="71,71,140,140" data-toggle="tooltip" data-placement="bottom" title="Down-right")
 								
-					#modal_carousel
-						div(id="carousel-example-generic" class="carousel slide" data-ride="carousel")
+		
+		//-Modal para carousel de imagenes
+		#modal_carousel.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+			.modal-dialog(role="document")
+				.modal-content
+					//.modal-header
+						//
+						button.close(type="button" data-dismiss="modal" aria-label="Close")
+							span(aria-hidden="true") &times;
+						h4#myModalLabel.modal-title Modal title
+					.modal-body
+						div(id="carouselArticle" class="carousel slide" data-ride="carousel")
 							//Indicators
 							ol(class="carousel-indicators")
-							- each image, index in data.item_displaying.images
-								li(data-target="#carousel-example-generic" data-slide-to=index class=index==0?"active":"")
+								- each image, index in data.item_displaying.images
+									li(data-target="#carousel-example-generic" data-slide-to=index class=index==0?"active":"")
 
 							//Wrapper for slides
 							div(class="carousel-inner" role="listbox")
-							- each image, index in data.item_displaying.images
-								div(class=index==0?"item active":"item")
-									img(src=image alt="Picture "+index)
-									div(class="carousel-caption")
+								- each image, index in data.item_displaying.images
+									div(class=index==0?"item active":"item")
+										img(src=image alt="Picture "+index)
+										div(class="carousel-caption")
 									
 							a(class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev")
 								span(class="glyphicon glyphicon-chevron-left" aria-hidden="true")
@@ -184,7 +194,10 @@ block pageBody
 							a(class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next")
 								span(class="glyphicon glyphicon-chevron-right" aria-hidden="true")
 								span(class="sr-only") Next
-							
+					//.modal-footer
+						//
+						button.btn.btn-default(type="button" data-dismiss="modal") Close
+						button.btn.btn-primary(type="button") Save changes
 	
 	script
 		include ../static/js/catalog.js
