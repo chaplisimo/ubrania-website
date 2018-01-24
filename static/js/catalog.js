@@ -57,8 +57,21 @@ $("[data-toggle='popover']").popover({
 	//container : 'body'
 })
 
+//Actualizar las medidas aproximadas segun la talla
 $("[name='sizesDetail']").on("change",function(){
 	let value = $(this).val();
 	$("[id^=sizesDetailDesc]").css("display","none");
 	$("#sizesDetailDesc_"+value).css("display","");
+});
+
+//Imagen principal a partir de thumbnails
+$("[id^='radio_picture']").on("change",function(){
+	let image = $("#picture"+$(this).val());
+	$("#mainPicture").attr('src',$(image).attr('src'));
+});
+
+//Modal ImagenPrincipal + Carousel
+$("#mainPicture").on('click',function(){
+	$("#modal_carousel").modal('toggle');
+	$("#carousel-example-generic").carousel();
 });
