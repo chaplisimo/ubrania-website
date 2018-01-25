@@ -78,19 +78,18 @@ $("#mainPicture").on('click',function(){
 
 //-Add to Cart 
 $("#addToCart").on('click',function(){
-	/*$.ajax('/addToCart', {
+	$.ajax('/catalog/addToCart', {
 		method : "POST",
 		data : $("#formArticle"),
 		success : function(){
+			var cartPosition = $("#myCart").offset();
+			var okButton = $("#addToCart").offset();
+			
+			$("#cartOK").toggleClass('cartOK');
+			
+			$("#cartOK").css({"top" : okButton.top-cartPosition.top, "left" : okButton.left-cartPosition.left});
+			
+			setTimeout(()=>{$("#cartOK").toggleClass('cartOK')}, 1000);
 		}
-			$("#cartOK").trigger('focus');
-	});*/
-	var cartPosition = $("#myCart").offset();
-	var okButton = $(this).offset();
-	
-	$("#cartOK").toggleClass('cartOK');
-	
-	$("#cartOK").css({"top" : okButton.top-cartPosition.top, "left" : okButton.left-cartPosition.left});
-	
-	setTimeout(()=>{$("#cartOK").toggleClass('cartOK')}, 1000);
+	});
 });
