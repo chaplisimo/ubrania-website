@@ -1,7 +1,14 @@
-/*var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var Article = new Schema({
-	"name" : String
-})*/
+var articleSchema = new Schema({
+	"name" : String,
+	"price" : Number,
+	"imageUrl" : String
+});
+
+var Article = mongoose.model('Article', articleSchema);
+
+module.exports.Article = Article;
+module.exports.articleSchema = articleSchema;
