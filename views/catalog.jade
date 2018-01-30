@@ -37,15 +37,15 @@ block pageBody
 	.container-fluid
 		.row
 			.col-md-8.col-md-offset-4
-				h2#item_name= data?data.item_displaying.name:""
+				h2#item_name= article?article.name:""
 			
 	.container-fluid(id="catalog")
 		.row
 			.col-md-2.col-md-offset-2
 				//-PICTURES SCROLL
 				.btn-group.pre-scrollable(id="pictureScroll" data-toggle="buttons")
-					if data
-						each image, index in data.item_displaying.images
+					if article & article.imageUrl
+						each image, index in article.imageUrl
 							label.btn.btn-default(class=index == 0?"active":"" aria-pressed=index == 0?"true" : "")
 								input(type="radio" name="pictures" id="radio_picture"+index value=index)
 								img(alt="Picture"+index src=image id="picture"+index class="img-thumbnail" width="100")
@@ -55,15 +55,15 @@ block pageBody
 
 				//-MAIN PICTURE
 				.col-md-4
-					img#mainPicture(alt="Picture3" src="./img/thumbnail.png" class="img-thumbnail")
+					img#mainPicture(alt="Picture3" src="/ubrania/img/thumbnail.png" class="img-thumbnail")
 				
 				.col-md-4
 					//-SIZES
 					.row
 						.col-md-12
 							.btn-group.btn-group-sm(role="group" aria-label"Sizes" data-toggle="buttons")
-								if data
-									each size, index in data.item_displaying.sizes
+								if article
+									each size, index in article.sizes
 										label.btn.btn-default(class=size.stock && index==0?"active":"" class=!size.stock?"disabled":"" aria-pressed=size.stock && index==0?"true":"")=size.name
 											input(type="radio" name="sizes" value=size.value disabled=!size.stock)
 					
@@ -86,16 +86,17 @@ block pageBody
 					//-PRICE
 					.row
 						.col-md-12
-							if data && data.item_displaying.hasOwnProperty("discountPrice")
-								del
-									h4.small $#{data.item_displaying.discountPrice}
-							.col-md-6
-								h1= data? '$'+data.item_displaying.price:"$"
-								input(type="hidden" value=data?data.item_displaying.price:"" name="price")
-							if data && data.item_displaying.hasOwnProperty("discountPercent")
-								.col-md-6.pull-left
-									h3
-										small.text-success #{data.item_displaying.discountPercent}% OFF
+							if article 
+								if article.onSale
+									del
+										h4.small $#{article.onSalePrice}
+								.col-md-6
+									h1= article? '$'+article.price:"$"
+									input(type="hidden" value=article?article.price:"" name="price")
+								if article.onSale
+									.col-md-6.pull-left
+										h3
+											small.text-success #{Math.round(100 - article.onSalePrice*100/article.price)}% OFF
 					
 					br
 					
@@ -110,7 +111,7 @@ block pageBody
 				.col-md-10.col-md-offset-1
 					//-DESCRIPCION
 					h1 Descripcion
-					p!=data? data.item_displaying.description: ""
+					p!=article? article.description: ""
 					
 		.row
 			.col-md-10.col-md-offset-1
@@ -122,8 +123,8 @@ block pageBody
 					.col-md-5
 						.btn-group.btn-group-sm(role="group" aria-label"Sizes" data-toggle="buttons")
 							- var i = 0
-							if data
-								each size, index in data.item_displaying.sizes
+							if article
+								each size, index in article.sizes
 									label.btn.btn-default(class=size.stock && i==0?"active":"" class=!size.stock?"disabled":"" aria-pressed=size.stock && index==0?"true":"")=size.name
 										input(type="radio" name="sizesDetail" value=size.value disabled=!size.stock)
 									if i==0 && size.stock
@@ -136,8 +137,8 @@ block pageBody
 							.panel-heading
 								| Medidas aproximadas
 							- var i = 0
-							if data
-								- each size, index in data.item_displaying.sizes
+							if article
+								- each size, index in article.sizes
 									ul.list-group(style=i==0 && size.stock?"":"display:none" id="sizesDetailDesc_"+size.value)
 										if size.measures.hasOwnProperty("hombro_a_hombro")
 											li.list-group-item Hombro a hombro: #{size.measures.hombro_a_hombro}cm
@@ -161,8 +162,7 @@ block pageBody
 		#modal_carousel.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
 			.modal-dialog(role="document")
 				.modal-content
-					//.modal-header
-						//
+					//-.modal-header
 						button.close(type="button" data-dismiss="modal" aria-label="Close")
 							span(aria-hidden="true") &times;
 						h4#myModalLabel.modal-title Modal title
@@ -170,26 +170,25 @@ block pageBody
 						div(id="carouselArticle" class="carousel slide" data-ride="carousel")
 							//Indicators
 							ol(class="carousel-indicators")
-								if data
-									- each image, index in data.item_displaying.images
-										li(data-target="#carousel-example-generic" data-slide-to=index class=index==0?"active":"")
+								if article & imageUrl
+									- each image, index in article.imageUrl
+										li(data-target="#carouselArticle" data-slide-to=index class=index==0?"active":"")
 
-							//Wrapper for slides
+							//-Wrapper for slides
 							div(class="carousel-inner" role="listbox")
-								if data
-									- each image, index in data.item_displaying.images
+								if article & imageUrl
+									- each image, index in article.imageUrl
 										div(class=index==0?"item active":"item")
 											img(src=image alt="Picture "+index)
 											div(class="carousel-caption")
 									
-							a(class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev")
+							a(class="left carousel-control" href="#carouselArticle" role="button" data-slide="prev")
 								span(class="glyphicon glyphicon-chevron-left" aria-hidden="true")
 								span(class="sr-only") Previous
-							a(class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next")
+							a(class="right carousel-control" href="#carouselArticle" role="button" data-slide="next")
 								span(class="glyphicon glyphicon-chevron-right" aria-hidden="true")
 								span(class="sr-only") Next
-					//.modal-footer
-						//
+					//-.modal-footer
 						button.btn.btn-default(type="button" data-dismiss="modal") Close
 						button.btn.btn-primary(type="button") Save changes
 	

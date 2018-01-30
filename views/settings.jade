@@ -1,0 +1,33 @@
+extends ./layouts/layout.jade
+
+block pageBody
+	.container-fluid
+			.row
+				.col-md-10.col-md-offset-1
+					h3 Configuración de Parámetros
+			hr
+			.row
+				.col-md-10.col-md-offset-1
+					.col-md-2
+						.container-fluid
+							.row
+								
+								ul.nav.nav-pills.nav-stacked.text-center
+									li(role="presentation" class="active")
+										a(href="#articleCollapse" data-toggle="collapse") Articulos
+								.collapse#articleCollapse(role="tablist")
+									.panel.panel-default
+										.panel-body
+											ul.list-unstyled
+												li.text-center
+													a.btn.btn-default.btn-sm.btn-block(href="#" id="articleList") Lista de Artículos
+												li.text-center
+													a.btn.btn-default.btn-sm.btn-block(href="#" id="articleNew") Nuevo Artículo
+							.row
+					.col-md-10
+						.panel.panel-default
+							.panel-body
+								#settings_content(style="min-height:200px; max-height:100")
+									p
+	script
+		include ../static/js/settings.js

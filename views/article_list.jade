@@ -1,0 +1,47 @@
+.container-fluid
+	if articles
+		- each article, index in articles
+			.row
+				.panel-body
+					.panel.panel-default
+						.panel-body
+							//-IMG PREVIEW
+							.col-md-2
+								img(src="../img/thumbnail.png" width=100)
+							//-NAME & DETAIL
+							.col-md-5
+								.container-fluid
+									.row
+										//-TITTLE
+										.col-md-12
+											h2= article.name
+									.row
+										//-DESCRIPTION
+										.col-md-12
+											h5
+												small(style="white-space: pre-line")= article.description
+							.col-md-2
+								.btn-group(role="group")
+									.btn-group-vertical.btn-group-col-begin(role="group")
+										span.btn.btn-default(class=article.sizes.includes("size_small")?"active":"disabled") S
+										span.btn.btn-default(class=article.sizes.includes("size_medium")?"active":"disabled") M
+										span.btn.btn-default(class=article.sizes.includes("size_large")?"active":"disabled") L
+									.btn-group-vertical.btn-group-col-end(role="group")
+										span.btn.btn-default(class=article.sizes.includes("size_xlarge")?"active":"disabled") XL
+										span.btn.btn-default(class=article.sizes.includes("size_xxlarge")?"active":"disabled") XXL
+										span.btn.btn-default(class=article.sizes.includes("size_3xlarge")?"active":"disabled") 3XL
+							.col-md-3
+								.container-fluid
+									.row
+										h2
+											del $#{article.price}
+									.row
+										if article.onSale
+											.col-md-4
+												h3 $#{article.onSalePrice}
+											.col-md-8
+												h4.text-right.pull-right.alert-success
+													small.text-success #{Math.round(100 - article.onSalePrice*100/article.price)}% OFF
+	else
+		h2.text-center
+			small.text-muted No hay Artículos registrados

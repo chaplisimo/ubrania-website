@@ -21,14 +21,21 @@ db.once('open', function() {
 
 //routes
 var cart = require('./routes/cart');
+var settings = require('./routes/settings');
 
 app.set("view engine","jade");
 
 app.use(express.static("static"));
 
+app.use('/ubrania/',express.static("static"));
+
 //route to cart
 app.use('/catalog', urlEncodedParser);
 app.use('/catalog', cart);
+
+//route to settings
+app.use('/settings', urlEncodedParser);
+app.use('/settings', settings);
 
 app.get("/", (req,res) => {
 	res.render("home");

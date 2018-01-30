@@ -5,7 +5,11 @@ var Schema = mongoose.Schema;
 var articleSchema = new Schema({
 	"name" : String,
 	"price" : Number,
-	"imageUrl" : String
+	"onSale" : Boolean,
+	"onSalePrice" : Number,
+	"description" : String,
+	"sizes" : Array,
+	"imageUrl" : Array
 });
 
 var Article = mongoose.model('Article', articleSchema);

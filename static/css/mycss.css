@@ -3,7 +3,7 @@
 div .add-margin{
 	position: relative;
 	margin: 0 15px 15px;
-	padding-top: 15px
+	padding-top: 15px;
 }
 
 .carousel-inner img {
@@ -34,7 +34,7 @@ div .add-margin{
 }
 
 .icon-lg {
-	font-size : 25pt;
+	font-size : 2.2em;
 }
 
 .popover-lg{
@@ -52,6 +52,18 @@ div .add-margin{
 	transform : rotate(360deg);
 }
 
+.btn-group-vertical.btn-group-col-begin>.btn{
+	border-top-right-radius : 0px !important;
+	border-bottom-right-radius : 0px !important;
+	margin-right : -1px;
+}
+
+.btn-group-vertical.btn-group-col-end>.btn{
+	border-top-left-radius : 0px !important;
+	border-bottom-left-radius : 0px !important;
+	margin-left : -1px;
+}
+
 @keyframes cartOK {
 	25%{opacity:1;}
 	80%{opacity:0;left:0px;top:0px};
@@ -66,21 +78,31 @@ div .add-margin{
 
 /*** horizontal line ***/
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
 }
 
 map {
-  position:absolute;
-  top:0; left:0;
+	position:absolute;
+	top:0; left:0;
 }
 
 area {
-  display: inline-block;
-  border:1px solid #000;
-  position:absolute;
+	display: inline-block;
+	border:1px solid #000;
+	position:absolute;
+}
+
+textarea {
+	overflow: auto;
+	resize:none;
+}
+
+textarea{
+	overflow: auto;
+	resize:none;
 }

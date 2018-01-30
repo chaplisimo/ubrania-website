@@ -46,7 +46,7 @@
 					"largo" : 70,
 					"espalda" : 60},
 				"stock" : true}],
-		"images" : ["./img/thumbnail.png","./img/thumbnail2.png","./img/thumbnail3.png","./img/thumbnail4.png"]
+		"images" : ["/ubrania/img/thumbnail.png","/ubrania/img/thumbnail2.png","/ubrania/img/thumbnail3.png","/ubrania/img/thumbnail4.png"]
 	}
 	
 }

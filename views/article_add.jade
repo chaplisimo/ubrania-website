@@ -1,0 +1,83 @@
+form#settingForm.form-inline
+	.container-fluid
+		.row
+			.col-md-10.col-md-offset-1.alert.alert-success.alert-dismissible(role="alert" class=message? "" : "hidden")
+				button.close(type="button" data-dismiss="alert" aria-label="Close")
+					span(aria-hidden="true") &times;
+				p
+					strong= strongMessage? strongMessage : ""
+					= message? " "+message : ""
+		.row
+			.col-md-10
+				label.col-md-2.control-label(for="articleName") Nombre:
+				input.form-control(id="articleName" placeholder="Nombre del item" type="text")
+		br
+		.row
+			.col-md-10
+				label.col-md-2.control-label(for="price") Precio:
+				.input-group
+					.input-group-addon $
+					input.form-control(id="price" placeholder="99.99" type="text")
+		br
+		.row
+			.col-md-5.input-group
+				label.col-md-6.control-label(for="onSale") Esta de oferta?:
+				input.input-group.pull-left(id="onSale" type="checkbox")
+			.col-md-5.input-group
+				label.col-md-5.control-label(for="onSalePrice") Precio de oferta:
+				.input-group
+					.input-group-addon $
+					input.form-control(id="onSalePrice" placeholder="99.99" type="text" readonly)
+		br
+		.row
+			.col-md-12
+				label.col-md-2.control-label(for="description") Descripción:
+				textarea.form-control(wrap="off" id="description" rows="4" style="width:75%" placeholder="Descripcion breve o completa del artículo")
+		br
+		.row
+			label.col-md-4.control-label(for="uploadedImages") Foto/s del artículo:
+			br
+			br
+			.col-md-10.col-md-offset-1.input-group
+				.panel.panel-default#uploadedImages
+					.panel-body
+						img#thumbnailPreview(src="/ubrania/img/thumbnail.png" class="img-thumbnail" width="100")
+						| &nbsp;&nbsp;
+						button.btn.btn-default.img-rounded
+							span.glyphicon.glyphicon-plus-sign.icon-lg.text-success
+		br
+		.row
+			.col-md-10
+				label.col-md-2.control-label(for="sizeAvailability") Talles disponibles:
+				.btn-toolbar(role="toolbar")
+					.btn-group.btn-group(role="group" aria-label"Sizes" data-toggle="buttons")
+						label.btn.btn-default S
+							input(type="checkbox" name="size_small" value="size_small")
+						label.btn.btn-default M
+							input(type="checkbox" name="size_medium" value="size_medium")
+						label.btn.btn-default L
+							input(type="checkbox" name="size_large" value="size_large")
+						label.btn.btn-default XL
+							input(type="checkbox" name="size_xlarge" value="size_xlarge")
+						label.btn.btn-default XXL
+							input(type="checkbox" name="size_xxlarge" value="size_xxlarge")
+						label.btn.btn-default 3XL
+							input(type="checkbox" name="size_3xl" value="size_3xl")
+						button.btn.btn-default(type="button" id="addSize")
+							span.glyphicon.glyphicon-plus
+				
+				.btn-toolbar(role="toolbar")
+					.btn-group.btn-group(role="group" aria-label"Sizes" data-toggle="buttons")
+						label.btn.btn-default.hidden#addSize
+							input#addSizeInput(type="checkbox" name="value" value="value")
+						| &nbsp;&nbsp;&nbsp;
+						label.control-label.hidden(for="newSize") Nuevo talle
+							input#newSize.form-control(type="text" name="value" placeholder="XXL")
+		br
+		.row
+			.col-md-10.col-md-offset-2
+				button.btn.btn-primary.btn-lg#articleAdd(type="button") Aceptar
+				| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				button.btn.btn-default#cancel(type="button") Cancelar
+		br
+		br
