@@ -8,8 +8,9 @@ var articleSchema = new Schema({
 	"onSale" : Boolean,
 	"onSalePrice" : Number,
 	"description" : String,
-	"sizes" : Array,
-	"imageUrl" : Array
+	"imageUrl" : Array,
+	"sizes" : Array//,
+	//"measures" : Array
 });
 
 var Article = mongoose.model('Article', articleSchema);

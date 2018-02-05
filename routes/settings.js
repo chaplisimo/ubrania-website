@@ -15,4 +15,10 @@ router.get('/articleList', settings_controller.articleList);
 router.get('/articleNew', settings_controller.articleNew);
 router.post('/articleAdd', settings_controller.articleAdd);
 
+
+router.post('/measureList', settings_controller.articleMeasuresList);
+router.post('/measureAdd', settings_controller.articleMeasuresAdd);
+router.post('/measureEdit', settings_controller.articleMeasuresEdit);
+router.post('/measureRemove', settings_controller.articleMeasuresRemove);
+
 module.exports = router;

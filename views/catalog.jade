@@ -44,7 +44,7 @@ block pageBody
 			.col-md-2.col-md-offset-2
 				//-PICTURES SCROLL
 				.btn-group.pre-scrollable(id="pictureScroll" data-toggle="buttons")
-					if article & article.imageUrl
+					if article && article.imageUrl
 						each image, index in article.imageUrl
 							label.btn.btn-default(class=index == 0?"active":"" aria-pressed=index == 0?"true" : "")
 								input(type="radio" name="pictures" id="radio_picture"+index value=index)
@@ -61,12 +61,26 @@ block pageBody
 					//-SIZES
 					.row
 						.col-md-12
-							.btn-group.btn-group-sm(role="group" aria-label"Sizes" data-toggle="buttons")
+							.btn-group.btn-group-sm(role="group" aria-label="Sizes" data-toggle="buttons")
 								if article
-									each size, index in article.sizes
-										label.btn.btn-default(class=size.stock && index==0?"active":"" class=!size.stock?"disabled":"" aria-pressed=size.stock && index==0?"true":"")=size.name
-											input(type="radio" name="sizes" value=size.value disabled=!size.stock)
-					
+									- var size_small = article.sizes.find((e)=>{return e.size =="size_small"});
+									- var size_medium = article.sizes.find((e)=>{return e.size =="size_medium"});
+									- var size_large = article.sizes.find((e)=>{return e.size =="size_large"});
+									- var size_xlarge = article.sizes.find((e)=>{return e.size =="size_xlarge"});
+									- var size_xxlarge = article.sizes.find((e)=>{return e.size =="size_xxlarge"});
+									- var size_3xlarge = article.sizes.find((e)=>{return e.size =="size_3xlarge"});
+									label.btn.btn-default(class=!size_small?"disabled":"" aria-pressed="") S
+										input(type="radio" name="sizes" value="size_small" disabled=!size_small)
+									label.btn.btn-default(class=!size_medium?"disabled":"" aria-pressed="") M
+										input(type="radio" name="sizes" value="size_medium" disabled=!size_medium)
+									label.btn.btn-default(class=!size_large?"disabled":"" aria-pressed="") L
+										input(type="radio" name="sizes" value="size_large" disabled=!size_large)
+									label.btn.btn-default(class=!size_xlarge?"disabled":"" aria-pressed="") XL
+										input(type="radio" name="sizes" value="size_xlarge" disabled=!size_xlarge)
+									label.btn.btn-default(class=!size_xxlarge?"disabled":"" aria-pressed="") XXL
+										input(type="radio" name="sizes" value="size_xxlarge" disabled=!size_xxlarge)
+									label.btn.btn-default(class=!size_3xlarge?"disabled":"" aria-pressed="") 3XL
+										input(type="radio" name="sizes" value="size_3xlarge" disabled=!size_3xlarge)
 					br
 					
 					//-QUANTITY
@@ -95,8 +109,8 @@ block pageBody
 									input(type="hidden" value=article?article.price:"" name="price")
 								if article.onSale
 									.col-md-6.pull-left
-										h3
-											small.text-success #{Math.round(100 - article.onSalePrice*100/article.price)}% OFF
+										h4.text-right.pull-right.alert-success
+													small.text-success #{Math.round(100 - article.onSalePrice*100/article.price)}% OFF
 					
 					br
 					
@@ -121,14 +135,26 @@ block pageBody
 					h1 Detalle de Tallas
 					br
 					.col-md-5
-						.btn-group.btn-group-sm(role="group" aria-label"Sizes" data-toggle="buttons")
-							- var i = 0
+						.btn-group.btn-group-sm(role="group" aria-label="Sizes" data-toggle="buttons")
 							if article
-								each size, index in article.sizes
-									label.btn.btn-default(class=size.stock && i==0?"active":"" class=!size.stock?"disabled":"" aria-pressed=size.stock && index==0?"true":"")=size.name
-										input(type="radio" name="sizesDetail" value=size.value disabled=!size.stock)
-									if i==0 && size.stock
-										- i = 1
+								- var size_small = article.sizes.find((e)=>{return e.size =="size_small"});
+								- var size_medium = article.sizes.find((e)=>{return e.size =="size_medium"});
+								- var size_large = article.sizes.find((e)=>{return e.size =="size_large"});
+								- var size_xlarge = article.sizes.find((e)=>{return e.size =="size_xlarge"});
+								- var size_xxlarge = article.sizes.find((e)=>{return e.size =="size_xxlarge"});
+								- var size_3xlarge = article.sizes.find((e)=>{return e.size =="size_3xlarge"});
+								label.btn.btn-default(class=!size_small?"disabled":"" aria-pressed="") S
+									input(type="radio" name="sizesDetail" value="size_small" disabled=!size_small)
+								label.btn.btn-default(class=!size_medium?"disabled":"" aria-pressed="") M
+									input(type="radio" name="sizesDetail" value="size_medium" disabled=!size_medium)
+								label.btn.btn-default(class=!size_large?"disabled":"" aria-pressed="") L
+									input(type="radio" name="sizesDetail" value="size_large" disabled=!size_large)
+								label.btn.btn-default(class=!size_xlarge?"disabled":"" aria-pressed="") XL
+									input(type="radio" name="sizesDetail" value="size_xlarge" disabled=!size_xlarge)
+								label.btn.btn-default(class=!size_xxlarge?"disabled":"" aria-pressed="") XXL
+									input(type="radio" name="sizesDetail" value="size_xxlarge" disabled=!size_xxlarge)
+								label.btn.btn-default(class=!size_3xlarge?"disabled":"" aria-pressed="") 3XL
+									input(type="radio" name="sizesDetail" value="size_3xlarge" disabled=!size_3xlarge)
 						
 						br
 						br
@@ -136,18 +162,11 @@ block pageBody
 						.panel.panel-default
 							.panel-heading
 								| Medidas aproximadas
-							- var i = 0
 							if article
 								- each size, index in article.sizes
-									ul.list-group(style=i==0 && size.stock?"":"display:none" id="sizesDetailDesc_"+size.value)
-										if size.measures.hasOwnProperty("hombro_a_hombro")
-											li.list-group-item Hombro a hombro: #{size.measures.hombro_a_hombro}cm
-										if size.measures.hasOwnProperty("largo")
-											li.list-group-item Largo: #{size.measures.largo}cm
-										if size.measures.hasOwnProperty("espalda")
-											li.list-group-item Espalda: #{size.measures.espalda}cm
-									if i==0 && size.stock
-										- i = 1
+									ul.list-group.hidden(id="sizesDetailDesc_"+size.size)
+										- each measure, index in size.measures
+											li.list-group-item #{measure.measureName}: #{measure.measureValue}cm
 					
 					.col-md-7.text-center
 							img(id="sizePreview" alt="sizePreview" src="./img/thumbnail.png" usemap="#clothMap")
@@ -170,13 +189,13 @@ block pageBody
 						div(id="carouselArticle" class="carousel slide" data-ride="carousel")
 							//Indicators
 							ol(class="carousel-indicators")
-								if article & imageUrl
+								if article && imageUrl
 									- each image, index in article.imageUrl
 										li(data-target="#carouselArticle" data-slide-to=index class=index==0?"active":"")
 
 							//-Wrapper for slides
 							div(class="carousel-inner" role="listbox")
-								if article & imageUrl
+								if article && imageUrl
 									- each image, index in article.imageUrl
 										div(class=index==0?"item active":"item")
 											img(src=image alt="Picture "+index)

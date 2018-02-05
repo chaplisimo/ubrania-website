@@ -76,8 +76,8 @@ cartPopover.popover({
 //-Actualizar las medidas aproximadas segun la talla
 $("[name='sizesDetail']").on("change",function(){
 	let value = $(this).val();
-	$("[id^=sizesDetailDesc]").css("display","none");
-	$("#sizesDetailDesc_"+value).css("display","");
+	$("[id^=sizesDetailDesc]").addClass("hidden");
+	$("#sizesDetailDesc_"+value).removeClass("hidden");
 });
 
 //-Imagen principal a partir de thumbnails
